@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
+        <title>USAFA Feedback Finder</title>
+        <script src="../assets/suggestions.js" defer></script>
+        <link href="../assets/sample_search.css" rel="stylesheet" />
+        <style>
+            body {
+                background-image: url('../assets/chapel.png');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%; /* streches image to fit screen */
+                background-position: center;
+            }
+        </style>
+    </head>
+
+    <div class="topnav">
+        <div class="topnav-centered">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <a href="../src/index.html"><img src="../assets/placeholder.jpg" height="50" width="180" /></a>
+            </div>
+        </div>
+        <a href="https://www.usafa.edu">USAFA</a>
+        <div class="topnav-right">
+            <a href="../src/post.html">Post</a>
+            <a href="../src/log_in.html">Log In</a>
+            <a href="../src/sign_up.html">Sign Up</a>
+        </div>
+    </div>
+
+    <form>
+        <input type="text" id="search" placeholder="Instructor Name" class="searchbox">
+        <input type="button" value="Search" class="searchButton">
+    </form>
+
+    <div class="reviewBlock">
+        <div class="entry">
+            <br>
+            <label for id="textBlock">&nbsp Professor Name:  </label>
+            <label for id="rating">&nbsp Bowtie Rating:  </label>
+            <div class="textBlock">
+
+            </div>
+        </div>
+    </div>
+</html> 

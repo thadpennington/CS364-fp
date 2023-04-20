@@ -1,0 +1,154 @@
+/* --------------------NAVIGATION BAR-------------------- */
+.topnav {
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #207cca;
+    color: whitesmoke;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #207cca;
+    color: white;
+}
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+    float: none;
+    display: block;
+    }
+    .topnav-centered a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
+/* ------------------------------------------------------ */
+/* ----------------------Comment Field---------------------- */
+form {
+    width:30%;
+    position: absolute;
+    transform: scale(1.5, 1.5);
+    top: 25%;
+    left: 10%;
+    margin: auto;
+    font-family: Arial, serif;
+}
+.InputBox[type="text"]{
+    width: 30%;
+    padding:8px 12px;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
+    text-align: left;
+    vertical-align: top;
+
+}
+.InputBox2{
+    padding:20% 60%;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
+    text-align: left;
+    vertical-align: top;
+}
+
+input[type="text"] {
+    text-align: left;
+    vertical-align: top;
+}
+
+input[type="button"]{
+    border:2px solid #207cca;
+    background-color:#207cca;
+    color:#fafafa;
+}
+input[type="button"]:hover  {
+    background-color:#fafafa;
+    color:#207cca;
+}
+
+.inputButton {
+    position:relative;
+    padding:6px 15px;
+    /*left:-8px;*/
+    border:2px solid #207cca;
+    background-color:#207cca;
+    color:#fafafa;
+}
+.inputButton:hover  {
+    background-color:#fafafa;
+    color:#207cca;
+}
+
+.InputBox::placeholder,
+.InputBox::-webkit-input-placeholder {
+  color: #333;
+}
+
+/* CSS code for autocomplete suggestions */
+.suggestions {
+    position: absolute;
+    z-index: 1;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+}
+  
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+  
+.suggestion:hover {
+    background-color: #e9e9e9;
+}
+/* ------------------------------------------------------ */
+/* -------------BACKGROUND IMAGE TRANSPARENCY------------ */
+body::before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.7); /* set the background color to semi-transparent white */
+}
+/* ------------------------------------------------------ */
