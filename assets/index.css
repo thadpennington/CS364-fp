@@ -69,7 +69,7 @@ form {
     left: 50%;
     margin: auto;
 }
-.searchBox {
+.searchbox {
     padding:8px 15px;
     background:rgba(50, 50, 50, 0.2);
     border:0px solid #dbdbdb;
@@ -85,6 +85,30 @@ form {
 .searchButton:hover  {
     background-color:#fafafa;
     color:#207cca;
+}
+
+.searchbox::placeholder,
+.searchbox::-webkit-input-placeholder {
+  color: #333;
+}
+
+/* CSS code for autocomplete suggestions */
+.suggestions {
+    position: absolute;
+    z-index: 1;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+}
+  
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+  
+.suggestion:hover {
+    background-color: #e9e9e9;
 }
 /* ------------------------------------------------------ */
 /* -------------BACKGROUND IMAGE TRANSPARENCY------------ */

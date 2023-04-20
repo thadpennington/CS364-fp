@@ -6,17 +6,15 @@
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
         <title>Sign Up</title>
         <link href="../assets/sign_up.css" rel="stylesheet" />
-
         <style>
             body {
-                background-image: url('../assets/Cadet-Chapel.jpg');
+                background-image: url('../assets/cadet_chapel.jpg');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: 100% 100%; /* streches image to fit screen */
                 background-position: center;
             }
         </style>
-
     </head>
 
     <div class="topnav">
@@ -35,20 +33,18 @@
     <body>
         <div class = "form">
             <form method = "post" action = "valid.php" onsubmit="return this.checkValidity()">
-                <label for = "emailAddress">Email Address:</label>
-                <br>
+                <label for = "emailAddress">Email Address:</label><br>
                 <input name = "emailAddress" type = "email" pattern = "^[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\.[a-zA-Z]{2,}$" maxlength="50" required><br>
-                <label for="username">Username:</label>
-                <br>
+                <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
-                <label for = "pswrd">Password:</label>
-                <br>
+                <label for = "pswrd">Password:</label><br>
                 <input name = "pswrd" type="password" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{15,}$" autofocus required title = "Password must contain 15 characters minimum, one capital, one number, and one special character."><br>
                 <p>Gender:</p>
-                <label for = "sex1">male</label>
+                <label for = "sex1">Male</label>
                 <input type = "radio" id = "sex1" name = "sex" value = "male" checked>
-                <label for = "sex2">female</label>
+                <label for = "sex2">Female</label>
                 <input type = "radio" id = "sex2" name = "sex" value = "female"><br>
+                <p></p>
                 <input type = "submit" value = "Submit">
             </form>
         </div>

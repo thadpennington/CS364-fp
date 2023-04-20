@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
         <title>USAFA Feedback Finder</title>
+        <script src="../assets/suggestions.js" defer></script>
         <link href="../assets/index.css" rel="stylesheet" />
         <style>
             body {
-                background-image: url('../assets/placeholder.jpg');
+                background-image: url('../assets/chapel.png');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: 100% 100%; /* streches image to fit screen */
@@ -31,8 +32,7 @@
     </div>
 
     <form>
-        <input type="text" placeholder="Instructor Name" required  class="searchBox">
+        <input type="text" id="search" placeholder="Instructor Name" class="searchbox">
         <input type="button" value="Search" class="searchButton">
     </form>
-
 </html> 
