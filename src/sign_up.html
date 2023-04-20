@@ -5,7 +5,18 @@
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
         <title>Sign Up</title>
-        <link href="../assets/index.css" rel="stylesheet" />
+        <link href="../assets/sign_up.css" rel="stylesheet" />
+
+        <style>
+            body {
+                background-image: url('../assets/Cadet-Chapel.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%; /* streches image to fit screen */
+                background-position: center;
+            }
+        </style>
+
     </head>
 
     <div class="topnav">
@@ -25,12 +36,14 @@
         <div class = "form">
             <form method = "post" action = "valid.php" onsubmit="return this.checkValidity()">
                 <label for = "emailAddress">Email Address:</label>
+                <br>
                 <input name = "emailAddress" type = "email" pattern = "^[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\.[a-zA-Z]{2,}$" maxlength="50" required><br>
                 <label for="username">Username:</label>
+                <br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
                 <label for = "pswrd">Password:</label>
-                <input name = "pswrd" type="password" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{15,}$" required><br>
-                <label for = "pswrd"><i>Password must contain 15 characters minimum, one capital, one number, and one special character.</i></label><br>
+                <br>
+                <input name = "pswrd" type="password" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{15,}$" autofocus required title = "Password must contain 15 characters minimum, one capital, one number, and one special character."><br>
                 <p>Gender:</p>
                 <label for = "sex1">male</label>
                 <input type = "radio" id = "sex1" name = "sex" value = "male" checked>

@@ -1,0 +1,128 @@
+/* --------------------NAVIGATION BAR-------------------- */
+.topnav {
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #207cca;
+    color: whitesmoke;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #207cca;
+    color: white;
+}
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+        float: none;
+        display: block;
+    }
+    .topnav-centered a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
+/* ------------------------------------------------------ */
+/* ----------------------SEARCH BAR---------------------- */
+form {
+    width:50%;
+    position: absolute;
+    transform: scale(1.5, 1.5);
+    top: 40%;
+    left: 50%;
+    margin: auto;
+}
+.searchBox {
+    padding:8px 15px;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
+}
+.searchButton {
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    border:2px solid #207cca;
+    background-color:#207cca;
+    color:#fafafa;
+}
+.searchButton:hover  {
+    background-color:#fafafa;
+    color:#207cca;
+}
+/* ------------------------------------------------------ */
+/* -------------BACKGROUND IMAGE TRANSPARENCY------------ */
+body::before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.7); /* set the background color to semi-transparent white */
+}
+/* ------------------------------------------------------ */
+input[type=text],
+input[type=email],
+input[type=password]{
+    border: none;
+    border-bottom: 2px solid #207cca;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus{
+    border: 3px solid #207cca;
+}
+
+input[type=submit] {
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    border:2px solid #207cca;
+    background-color:#207cca;
+    color:#fafafa;
+}
+
+input[type=submit]:hover  {
+    background-color:#fafafa;
+    color:#207cca;
+}
