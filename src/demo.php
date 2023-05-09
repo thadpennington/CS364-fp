@@ -3,6 +3,7 @@
 <!-- Demo.php - 3/21/2011 - Steve Hadfield (edited by Joel Coffman) -->
 <!-- Shows how to access POST and SYSTEM parameters in PHP -->
 
+
  <head>
    <title>CS 364 PEX2 Demo.php</title>
    <style>
