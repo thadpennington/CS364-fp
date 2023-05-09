@@ -21,6 +21,7 @@ function checkPassword(){
         var email = document.getElementById("emailAddress");
         var username = document.getElementById("username");
         var hash = createHash(PS.value);
+        alert("Hash is " + hash)
 
         $.ajax({
             url: "demo.php",
@@ -28,7 +29,7 @@ function checkPassword(){
             data: {
                 emailAddress: email.value,
                 username: username.value,
-                password: hash,
+                password: hash.value,
                 sex: $('input[name=sex]:checked').val()
             },
             success: function(response) {
