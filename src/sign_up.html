@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
@@ -29,16 +30,18 @@
             <a href="../src/sign_up.html">Sign Up</a>
         </div>
     </div>
-    
+
     <body>
         <div class = "form">
-            <form method = "post" action = "valid.php" onsubmit="return this.checkValidity()">
+            <form method = "post" action = "demo.php" onsubmit="return checkPassword()">
                 <label for = "emailAddress">Email Address:</label><br>
                 <input name = "emailAddress" type = "email" pattern = "^[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\.[a-zA-Z]{2,}$" maxlength="50" required><br>
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
                 <label for = "pswrd">Password:</label><br>
-                <input name = "pswrd" type="password" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{15,}$" autofocus required title = "Password must contain 15 characters minimum, one capital, one number, and one special character."><br>
+                <input name = "pswrd" type="text" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required title = "Password must contain 7 characters minimum, one capital, one number, and one special character." maxlength="50"><br>
+                <label for = "confirmPswrd">Confirm Password:</label><br>
+                <input name = "confirmPswrd" type="text" id="confirmPassword" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required maxlength="50"><br>
                 <p>Gender:</p>
                 <label for = "sex1">Male</label>
                 <input type = "radio" id = "sex1" name = "sex" value = "male" checked>
@@ -46,10 +49,11 @@
                 <input type = "radio" id = "sex2" name = "sex" value = "female"><br>
                 <p></p>
                 <input type = "submit" value = "Submit">
+                <p id="error-message" style="display: none; color: red;">Passwords must match.</p>
             </form>
         </div>
 
-        <script src = "MAKE THE SCRIPT" defer></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js" defer></script>
+        <script src = sign_up.js defer></script>
     </body>
 </html>
