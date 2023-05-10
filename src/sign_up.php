@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
@@ -33,27 +32,41 @@
 
     <body>
         <div class = "form">
-            <form method = "post" action = "demo.php" onsubmit="return checkPassword()">
+            <form method ="post" action = "demo.php">
+                <?php if (isset($_SESSION["name_exists"])): ?>
+                <p id="error-message" style="display: block; color: red;">Username already exists.</p>
+                <?php unset($_SESSION["name_exists"]); ?>
+                <?php else: ?>
+                    <p id="error-message" style="display: none; color: red;">Username already exists.</p>
+                <?php endif; ?>
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" minlength="2" maxlength="15" pattern="[a-zA-Z\-]+" required><br>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" minlength="2" maxlength="15" pattern="[a-zA-Z\-]+" required><br>
                 <label for = "emailAddress">Email Address:</label><br>
                 <input name = "emailAddress" type = "email" pattern = "^[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\.[a-zA-Z]{2,}$" maxlength="50" required><br>
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
-                <label for = "pswrd">Password:</label><br>
-                <input name = "pswrd" type="text" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required title = "Password must contain 7 characters minimum, one capital, one number, and one special character." maxlength="50"><br>
-                <label for = "confirmPswrd">Confirm Password:</label><br>
-                <input name = "confirmPswrd" type="text" id="confirmPassword" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required maxlength="50"><br>
+                <label for = "password">Password:</label><br>
+                <input name = "password" type="text" id="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required title = "Password must contain 7 characters minimum, one capital, one number, and one special character." maxlength="50"><br>
+                <label for = "confirmPassword">Confirm Password:</label><br>
+                <input name = "confirmPassword" type="text" id="confirmPassword" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required maxlength="50"><br>
                 <p>Gender:</p>
                 <label for = "sex1">Male</label>
                 <input type = "radio" id = "sex1" name = "sex" value = "male" checked>
                 <label for = "sex2">Female</label>
                 <input type = "radio" id = "sex2" name = "sex" value = "female"><br>
-                <p></p>
-                <input type = "submit" value = "Submit">
-                <p id="error-message" style="display: none; color: red;">Passwords must match.</p>
+                <input type="submit" value="Submit">
+                <?php 
+                session_start(); ?>
+                <?php if (isset($_SESSION["error"])): ?>
+                <p id="error-message" style="display: block; color: red;">Passwords must match.</p>
+                <?php unset($_SESSION["error"]); ?>
+                <?php else: ?>
+                    <p id="error-message" style="display: none; color: red;">Passwords must match.</p>
+                <?php endif; ?>
             </form>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js" defer></script>
-        <script src = sign_up.js defer></script>
     </body>
 </html>
