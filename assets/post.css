@@ -161,3 +161,11 @@ body::before {
 .button-clicked {
     background-color: red;
 }
+
+.headerText {
+    padding:20px;
+    border:0px solid #dbdbdb;
+    text-align: left;
+    vertical-align: top;
+    font-family: Arial, Helvetica, sans-serif;
+}

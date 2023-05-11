@@ -10,6 +10,7 @@
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
             $username = $_POST['username'];
+            $email = $_POST['emailAddress'];
             $sex = $_POST['sex'];
 
             //compute the password hash
@@ -43,8 +44,12 @@
                 exit;
             
             }else{
-
+                // Prepared statement to add user to the database
+                $stmt = $conn->prepare("INSERT INTO Users (username, password_hash, email) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $username, $hash_ps, $email);
+                $stmt->execute();
                 echo "IT DID A THING";
+                echo $hash_ps;
                 //add a new value to the database
             }
         }

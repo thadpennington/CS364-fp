@@ -65,7 +65,7 @@ form {
     width:50%;
     position: absolute;
     transform: scale(1.5, 1.5);
-    top: 40%; /* MODIFY DIST FROM TOP HERE - LOWER MEANS CLOSER TO TOP */
+    top: 20%; /* MODIFY DIST FROM TOP HERE - LOWER MEANS CLOSER TO TOP */
     left: 50%;
     margin: auto;
 }
