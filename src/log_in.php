@@ -37,7 +37,7 @@
                 <label for = "emailAddress">Email Address:</label><br>
                 <input name = "emailAddress" type = "email" pattern = "^[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\.[a-zA-Z]{2,}$" maxlength="50" required><br>
                 <label for = "pswrd">Password:</label><br>
-                <input name = "pswrd" type="password" id="password" name="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{15,}$" required><br><br>
+                <input name = "pswrd" type="password" id="password" name="password" pattern="^[A-Za-z0-9#?$%&]+$" required><br><br>
                 <input type = "submit" value = "Submit">
             </form>
         </div>
