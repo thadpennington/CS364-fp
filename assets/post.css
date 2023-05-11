@@ -80,11 +80,16 @@ form {
 
 }
 .InputBox2{
-    padding:20% 60%;
+    padding:20px;
     background:rgba(50, 50, 50, 0.2);
     border:0px solid #dbdbdb;
     text-align: left;
     vertical-align: top;
+    box-sizing: border-box;
+    width: 120%;
+    height: 200%;
+    word-wrap: break-word;
+    display: block;
 }
 
 input[type="text"] {

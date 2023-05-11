@@ -38,7 +38,7 @@
         <label for="courseBox">Course Name: </label><br>
         <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox"><br><br>
         <label for="commentBox">Comment: </label><br>
-        <input type="text" id="commentBox" name="comment" placeholder="Comment" class="InputBox2"><br><br>
+        <textarea id="commentBox" name="comment" placeholder="Comment" class="InputBox2"></textarea><br><br>
         <div class="rateBox">
                 <label for = "num1">1</label>
                 <input type = "radio" id = "num1" name = "num" value = "1" checked>
