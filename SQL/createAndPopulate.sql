@@ -2,6 +2,7 @@ CREATE TABLE Users (
     username VARCHAR(15) NOT NULL,
     password_hash VARCHAR(32) NOT NULL,
     email VARCHAR(50) NOT NULL,
+    session_id INT,
 
     PRIMARY KEY (username)
 );
