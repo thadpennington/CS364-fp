@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <form method="post" action="post.php">
+    <form id ="myForm" method="post" action="post.php">
         <label for="inputBox">Instructor Name: </label><br>
         <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
         <label for="courseBox">Course Name: </label><br>
@@ -40,13 +40,16 @@
         <label for="commentBox">Comment: </label><br>
         <input type="text" id="commentBox" name="comment" placeholder="Comment" class="InputBox2"><br><br>
         <div class="rateBox">
-            <label for="rating">Select a bowtie rating <img src="../assets/bow-tie.png" height="10" width="20">:</label><br>
-            <input type="button" class="myButton" value="1" onclick="document.getElementById('rating').value='1'">
-            <input type="button" class="myButton" value="2" onclick="document.getElementById('rating').value='2'">
-            <input type="button" class="myButton" value="3" onclick="document.getElementById('rating').value='3'">
-            <input type="button" class="myButton" value="4" onclick="document.getElementById('rating').value='4'">
-            <input type="button" class="myButton" value="5" onclick="document.getElementById('rating').value='5'"><br>
-            <input type="hidden" id="rating" name="rating"><br>
+                <label for = "num1">1</label>
+                <input type = "radio" id = "num1" name = "num" value = "1" checked>
+                <label for = "num2">2</label>
+                <input type = "radio" id = "num2" name = "num" value = "2" checked>
+                <label for = "num3">3</label>
+                <input type = "radio" id = "num3" name = "num" value = "3" checked>
+                <label for = "num4">4</label>
+                <input type = "radio" id = "num4" name = "num" value = "4" checked>
+                <label for = "num5">5</label>
+                <input type = "radio" id = "num5" name = "num" value = "5"><br>
         </div>
         <button type="submit" value="Submit" class="inputButton">Submit</button>
     </form>
@@ -75,16 +78,22 @@
             $instructorName = $_POST['instructor'];
             $course = $_POST['course'];
             $comment = $_POST['comment'];
-            $ratingVal = 5;//$_POST['rating'];
+            $ratingVal = $_POST['num'];
+            $id = -1;
 
             // Prepare the SQL statement with placeholders
-            $stmt = $conn->prepare("INSERT INTO Posts (instructor, course, rating, content) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content) VALUES (?, ?, ?, ?, ?)");
 
             // Bind the parameters to the placeholders
-            $stmt->bind_param("sssi", $instructorName, $course, $ratingVal, $comment);
+            $stmt->bind_param("isssi", $id, $instructorName, $course, $ratingVal, $comment);
 
             // Execute the statement
-            $stmt->execute();
+            if($stmt->execute()) {
+                echo "success";
+            } else {
+                echo "failure" . $stmt->error;
+            }
+
 
             // Close the statement
             $stmt->close();

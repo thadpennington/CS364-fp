@@ -26,6 +26,7 @@
         </div>
         <a href="https://www.usafa.edu">USAFA</a>
         <div class="topnav-right">
+            <a href="../src/post.html">Post</a>
             <a href="../src/log_in.html">Log In</a>
             <a href="../src/sign_up.php">Sign Up</a>
         </div>
