@@ -20,14 +20,14 @@
 
     <div class="topnav">
         <div class="topnav-centered">
-            <div class="logo" onclick="window.location.href='index.html'">
-                <a href="../src/index.html"><img src="../assets/placeholder.jpg" height="50" width="180" /></a>
+            <div class="logo" onclick="window.location.href='index.php'">
+                <a href="../src/index.php"><img src="../assets/placeholder.jpg" height="50" width="180" /></a>
             </div>
         </div>
         <a href="https://www.usafa.edu">USAFA</a>
         <div class="topnav-right">
-            <a href="../src/post.html">Post</a>
-            <a href="../src/log_in.html">Log In</a>
+            <a href="../src/post.php">Post</a>
+            <a href="../src/log_in.php">Log In</a>
             <a href="../src/sign_up.php">Sign Up</a>
         </div>
     </div>
