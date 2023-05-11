@@ -34,52 +34,53 @@
 
     <!-- php include 'test.php' ; ?> -->
 
-    <?php
-        $servername = "localhost";
-        $username = "student";
-        $password = "CompSci364";
-        $dbname = "databased";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }else{
-            //echo "Successful connection";
-        }
-
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $myInputValue = $_POST['searchbox'];
-
-            // do something with $myInputValue
-            $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor LIKE ?");
-
-            $instructor = "%$myInputValue%";
-            $stmt->bind_param("s", $instructor);
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class=\"postBox\"><h4>Anonymous&nbsp".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
-            }
-            $stmt->close();
-            $result->free();
-
-            $conn->close();
-        }
-    ?>
-
-    <!--
-    <div class="postBox">
-        <h4>Anonymous&nbsp$row["instructor"]</h4>
-        <br><p>$row["content"]</p>
-    </div> -->
-
-    <form method="post" action="result.php">
+    <form id = "search_bar" method="post" action="result.php">
         <input name="searchbox" type="text" id="search" placeholder="Instructor Name" class="searchbox">
         <button type="submit" value="Search" class="searchButton">Search</button>
     </form>
+
+    <?php
+        // $servername = "localhost";
+        // $username = "student";
+        // $password = "CompSci364";
+        // $dbname = "databased";
+
+        // // Create connection
+        // $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // // Check connection
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error);
+        // }else{
+        //     //echo "Successful connection";
+        // }
+
+
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     $myInputValue = $_POST['searchbox'];
+
+        //     // do something with $myInputValue
+        //     $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor LIKE ?");
+
+        //     $instructor = "%$myInputValue%";
+        //     $stmt->bind_param("s", $instructor);
+        //     $stmt->execute();
+
+        //     $result = $stmt->get_result();
+        //     while ($row = $result->fetch_assoc()) {
+        //         echo "<div class=\"postBox\"><h4>Anonymous&nbsp".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
+        //     }
+        //     $stmt->close();
+        //     $result->free();
+
+        //     $conn->close();
+        // }
+    ?>
+
+
+    <div class="postBox">
+        <h4>Anonymous<br>row["instructor"]</h4>
+        <br><p>$row["content"]</p>
+    </div>
+
 </html> 
