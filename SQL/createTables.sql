@@ -17,3 +17,6 @@ CREATE TABLE Posts (
     FOREIGN KEY (user) REFERENCES Users(username),
     PRIMARY KEY (id)
 );
+
+INSERT INTO table_name (username, password_hash, email)
+VALUES ('Test', 'sjkdfgsdjkfhgssjgf', 'dfghdhfg@dkfh.com'); 
