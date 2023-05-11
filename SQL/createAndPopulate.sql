@@ -1,8 +1,11 @@
 CREATE TABLE Users (
+    firstName VARCHAR(15) NOT NULL,
+    lastName VARCHAR(15) NOT NULL,
     username VARCHAR(15) NOT NULL,
     password_hash VARCHAR(32) NOT NULL,
     email VARCHAR(50) NOT NULL,
     session_id INT,
+    salt VARCHAR(16) NOT NULL,
 
     PRIMARY KEY (username)
 );
