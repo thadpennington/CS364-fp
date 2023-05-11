@@ -41,6 +41,10 @@
                 <input type = "submit" value = "Submit">
             </form>
         </div>
-        <script src = "MAKE THE SCRIPT" defer></script>
     </body>
+
+    
+
+
+
 </html>

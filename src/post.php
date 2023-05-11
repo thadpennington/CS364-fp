@@ -32,6 +32,8 @@
         </div>
     </div>
 
+    <h2 class = "headerText">Post Submission: </h2>
+
     <form id ="myForm" method="post" action="post.php">
         <label for="inputBox">Instructor Name: </label><br>
         <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
@@ -73,13 +75,15 @@
 
         // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+            var_dump($_POST);
             // Get the instructor name, comment, and rating value from the POST data
             $instructorName = $_POST['instructor'];
             $course = $_POST['course'];
             $comment = $_POST['comment'];
             $ratingVal = $_POST['num'];
             
+            echo $comment;
+
             // Get the max id value from the Posts table
             $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
             $max_id_result = $conn->query($max_id_query);
@@ -95,7 +99,7 @@
             $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content) VALUES (?, ?, ?, ?, ?)");
 
             // Bind the parameters to the placeholders
-            $stmt->bind_param("isssi", $id, $instructorName, $course, $ratingVal, $comment);
+            $stmt->bind_param("issis", $id, $instructorName, $course, $ratingVal, $comment);
 
             // Execute the statement
             if($stmt->execute()) {
