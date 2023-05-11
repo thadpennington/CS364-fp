@@ -79,7 +79,17 @@
             $course = $_POST['course'];
             $comment = $_POST['comment'];
             $ratingVal = $_POST['num'];
-            $id = -1;
+            
+            // Get the max id value from the Posts table
+            $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
+            $max_id_result = $conn->query($max_id_query);
+
+            if ($max_id_result->num_rows > 0) {
+                $max_id_row = $max_id_result->fetch_assoc();
+                $id = $max_id_row["max_id"] + 1;
+            } else {
+                $id = 1;
+            }
 
             // Prepare the SQL statement with placeholders
             $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content) VALUES (?, ?, ?, ?, ?)");
@@ -89,9 +99,9 @@
 
             // Execute the statement
             if($stmt->execute()) {
-                echo "success";
+                // echo "success";
             } else {
-                echo "failure" . $stmt->error;
+                // echo "failure" . $stmt->error;
             }
 
 
