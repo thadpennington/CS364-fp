@@ -128,11 +128,14 @@ body::before {
 
 /* post box stuff */
 
+.spacing {
+    margin-top: 17%;
+    margin-left: 33%;
+}
+
 .postBox {
-    position: absolute;
-    top: 50%;
-    left: 27%;
-    display: inline-block;
+
+    display: block;
     width: 45%;
     padding: 20px;
     background-color: #dbdbdb;
@@ -140,6 +143,7 @@ body::before {
     border-left: 3px solid #207cca;
     border-bottom: 3px solid #207cca;
     border-radius: 4px;
+    margin-bottom: 1%;
   }
   
   .postBox .header {
