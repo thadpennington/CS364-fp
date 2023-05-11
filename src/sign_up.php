@@ -33,11 +33,12 @@
     <body>
         <div class = "form">
             <form method ="post" action = "demo.php">
+            <?php session_start(); ?>
                 <?php if (isset($_SESSION["name_exists"])): ?>
-                <p id="error-message" style="display: block; color: red;">Username already exists.</p>
+                <p id="error-message-user" style="display: block; color: red;">Username already exists.</p>
                 <?php unset($_SESSION["name_exists"]); ?>
                 <?php else: ?>
-                    <p id="error-message" style="display: none; color: red;">Username already exists.</p>
+                    <p id="error-message-user" style="display: none; color: red;">Username already exists.</p>
                 <?php endif; ?>
                 <label for="firstName">First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" minlength="2" maxlength="15" pattern="[a-zA-Z\-]+" required><br>
@@ -57,8 +58,6 @@
                 <label for = "sex2">Female</label>
                 <input type = "radio" id = "sex2" name = "sex" value = "female"><br>
                 <input type="submit" value="Submit">
-                <?php 
-                session_start(); ?>
                 <?php if (isset($_SESSION["error"])): ?>
                 <p id="error-message" style="display: block; color: red;">Passwords must match.</p>
                 <?php unset($_SESSION["error"]); ?>

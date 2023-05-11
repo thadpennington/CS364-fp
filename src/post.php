@@ -35,15 +35,17 @@
     <form method="post" action="post.php">
         <label for="inputBox">Instructor Name: </label><br>
         <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
+        <label for="courseBox">Course Name: </label><br>
+        <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox"><br><br>
         <label for="commentBox">Comment: </label><br>
         <input type="text" id="commentBox" name="comment" placeholder="Comment" class="InputBox2"><br><br>
         <div class="rateBox">
             <label for="rating">Select a bowtie rating <img src="../assets/bow-tie.png" height="10" width="20">:</label><br>
-            <input type="button" value="1" onclick="document.getElementById('rating').value='1'">
-            <input type="button" value="2" onclick="document.getElementById('rating').value='2'">
-            <input type="button" value="3" onclick="document.getElementById('rating').value='3'">
-            <input type="button" value="4" onclick="document.getElementById('rating').value='4'">
-            <input type="button" value="5" onclick="document.getElementById('rating').value='5'"><br>
+            <input type="button" class="myButton" value="1" onclick="document.getElementById('rating').value='1'">
+            <input type="button" class="myButton" value="2" onclick="document.getElementById('rating').value='2'">
+            <input type="button" class="myButton" value="3" onclick="document.getElementById('rating').value='3'">
+            <input type="button" class="myButton" value="4" onclick="document.getElementById('rating').value='4'">
+            <input type="button" class="myButton" value="5" onclick="document.getElementById('rating').value='5'"><br>
             <input type="hidden" id="rating" name="rating"><br>
         </div>
         <button type="submit" value="Submit" class="inputButton">Submit</button>
@@ -66,26 +68,28 @@
         }
 
 
+        // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $myInputValue = $_POST['searchbox'];
-            $courseInput = 
 
+            // Get the instructor name, comment, and rating value from the POST data
+            $instructorName = $_POST['instructor'];
+            $course = $_POST['course'];
+            $comment = $_POST['comment'];
+            $ratingVal = 5;//$_POST['rating'];
 
+            // Prepare the SQL statement with placeholders
+            $stmt = $conn->prepare("INSERT INTO Posts (instructor, course, rating, content) VALUES (?, ?, ?, ?)");
 
-            // do something with $myInputValue
-            $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor LIKE ?");
+            // Bind the parameters to the placeholders
+            $stmt->bind_param("sssi", $instructorName, $course, $ratingVal, $comment);
 
-            $instructor = "%$myInputValue%";
-            $stmt->bind_param("s", $instructor);
+            // Execute the statement
             $stmt->execute();
 
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class=\"postBox\"><h4>Anonymous&nbsp".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
-            }
+            // Close the statement
             $stmt->close();
-            $result->free();
 
+            // Close the database connection
             $conn->close();
         }
     ?>
