@@ -77,10 +77,19 @@
         // }
     ?>
 
-
-    <div class="postBox">
-        <h4>Anonymous<br>row["instructor"]</h4>
-        <br><p>$row["content"]</p>
+    <div class = "spacing">
+        <div class="postBox">
+            <h4>Anonymous<br>Joel Coffman</h4>
+            <br><p>insert review here</p>
+        </div>
+        <div class="postBox">
+            <h4>Anonymous<br>Joel Coffman</h4>
+            <br><p>insert review here 2</p>
+        </div>
+        <div class="postBox">
+            <h4>Anonymous<br>Joel Coffman</h4>
+            <br><p>insert review here 3</p>
+        </div>
     </div>
 
 </html> 
