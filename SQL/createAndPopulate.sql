@@ -1,11 +1,10 @@
 CREATE TABLE Users (
-    firstName VARCHAR(15) NOT NULL,
-    lastName VARCHAR(15) NOT NULL,
+    firstName VARCHAR(15),
+    lastName VARCHAR(15),
     username VARCHAR(15) NOT NULL,
-    password_hash VARCHAR(32) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    session_id INT,
-    salt VARCHAR(16) NOT NULL,
+    password_hash VARCHAR(64),
+    email VARCHAR(50),
+    salt VARCHAR(16),
 
     PRIMARY KEY (username)
 );
@@ -58,6 +57,8 @@ VALUES (11, 'Adrian de Freitas', 'CS 110', 2, 'Computers are not really my thing
 
 
 
+
+drop table Posts; drop table Users;
 
 
 

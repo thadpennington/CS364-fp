@@ -15,7 +15,7 @@
 
             //compute the password hash
             $salt = bin2hex(random_bytes(16));
-            $hash_ps = hash('sha256', $password, $salt);
+            $hash_ps = bin2hex(hash('sha256', $password, $salt));
 
             $servername = "localhost";
             $usernameMySQL = "student";
@@ -31,7 +31,7 @@
             }
 
             $stmt = $conn->prepare("SELECT * FROM Users WHERE username = ?");
-            
+            header("Location: index.php");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -45,12 +45,15 @@
             
             }else{
                 // Prepared statement to add user to the database
-                $stmt = $conn->prepare("INSERT INTO Users (username, password_hash, email) VALUES (?, ?, ?)");
-                $stmt->bind_param("sss", $username, $hash_ps, $email);
+                $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, username, password_hash, email, salt) VALUES (?, ?, ?, ?, ?, ?);");
+                $stmt->bind_param("ssssss", $firstName, $lastName, $username, $hash_ps, $email, $salt);
                 $stmt->execute();
+                echo $email.$firstName.$lastName.$username."\n";    
                 echo "IT DID A THING";
                 echo $hash_ps;
+                echo $salt;
                 //add a new value to the database
+                //header("Location: index.php");
             }
         }
         else {
