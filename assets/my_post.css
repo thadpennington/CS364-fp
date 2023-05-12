@@ -128,3 +128,15 @@ body::before {
     top: 1%;
     right: 8%;
 }
+
+.rating {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+}
+
+.bowtie {
+    position: absolute;
+    bottom: 8%;
+    right: 4%;
+}

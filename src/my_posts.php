@@ -63,29 +63,39 @@
             // do something with $myInputValue
             $stmt = $conn->prepare("SELECT * FROM Posts WHERE user = ?");
 
-            //$instructor = "%$myInputValue%";
-            //$stmt->bind_param("s", $instructor);
+            if (isset($_SESSION['username'])){
+                $user = $_SESSION['username'];
 
-            //THESE ARE TEMPORARY
-            $temp = "Joel Coffman";
-            $stmt->bind_param("s", $temp);
-            
-            $stmt->execute();
 
-            echo "<div class = \"spacing\">";
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()) {
-                $id = $row["id"];
-                echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p>";
-                echo "<form id = \"form_edit\" method=\"post\" action=\"edit_post.php\"><button class=\"edit_post\" onclick=\"submitForm()\">EDIT</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
-                echo "<form id = \"form_delete\" method=\"post\" action=\"delete_post.php\"><button class=\"delete_post\" onclick=\"submitForm()\">DELETE</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                $stmt = $conn->prepare("SELECT * FROM Posts WHERE user = ?");
+                $stmt->bind_param("s", $user);
+                
+
+                $stmt->execute();
+
+                echo "<div class = \"spacing\">";
+                $result = $stmt->get_result();
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row["id"];
+                    echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."<br>".$row["course"]."</h4><br><p>".$row["content"]."</p>";
+                    echo "<div class=\"rating\"<p>".$row["rating"]."<p></div>";
+                    echo "<form id = \"form_edit\" method=\"post\" action=\"edit_post.php\"><button class=\"edit_post\" onclick=\"submitForm()\">EDIT</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                    echo "<form id = \"form_delete\" method=\"post\" action=\"delete_post.php\"><button class=\"delete_post\" onclick=\"submitForm()\">DELETE</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                    echo "<div class=\"bowtie\"><img src=\"../assets/bow-tie.png\" height=\"10\" width=\"12\"/></div>";
+                    echo "</div>";
+                }
                 echo "</div>";
-            }
-            echo "</div>";
-            $stmt->close();
-            $result->free();
+                $stmt->close();
+                $result->free();
+    
+                $conn->close();
 
-            $conn->close();
+            }
+            else {
+                header("Location: log_in.php");
+                exit;
+            }
+            
     ?>
 
 

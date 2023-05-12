@@ -83,7 +83,10 @@
             echo "<div class = \"spacing\">";
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()) {
-                echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
+                echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."<br>".$row["course"]."</h4><br><p>".$row["content"]."</p>";
+                    echo "<div class=\"rating\"<p>".$row["rating"]."<p></div>";
+                    echo "<div class=\"bowtie\"><img src=\"../assets/bow-tie.png\" height=\"10\" width=\"12\"/></div>";
+                    echo "</div>";
             }
             echo "</div>";
             $stmt->close();

@@ -129,12 +129,12 @@ body::before {
 /* post box stuff */
 
 .spacing {
-    margin-top: 17%;
+    margin-top: 10%;
     margin-left: 33%;
 }
 
 .postBox {
-
+    position: relative;
     display: block;
     width: 45%;
     padding: 20px;
@@ -167,3 +167,15 @@ body::before {
     overflow-wrap: break-word;
     word-break: break-word;
   }
+
+.rating {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+}
+
+.bowtie {
+    position: absolute;
+    bottom: 8%;
+    right: 4%;
+}

@@ -46,27 +46,6 @@
 
     
 
-    <form id ="myForm" method="post" action="post.php">
-        <label for="inputBox">Instructor Name: </label><br>
-        <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
-        <label for="courseBox">Course Name: </label><br>
-        <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox"><br><br>
-        <label for="commentBox">Comment: </label><br>
-        <textarea id="commentBox" name="comment" placeholder="Comment" class="InputBox2">testing testing</textarea><br><br>
-        <div class="rateBox">
-                <label for = "num1">1</label>
-                <input type = "radio" id = "num1" name = "num" value = "1" checked>
-                <label for = "num2">2</label>
-                <input type = "radio" id = "num2" name = "num" value = "2" checked>
-                <label for = "num3">3</label>
-                <input type = "radio" id = "num3" name = "num" value = "3" checked>
-                <label for = "num4">4</label>
-                <input type = "radio" id = "num4" name = "num" value = "4" checked>
-                <label for = "num5">5</label>
-                <input type = "radio" id = "num5" name = "num" value = "5"><br>
-        </div>
-        <button type="submit" value="Submit" class="inputButton">Submit</button>
-    </form>
 
     <?php
         $servername = "localhost";
@@ -87,40 +66,26 @@
 
         // Check if the request method is POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
+            //var_dump($_POST);
             // Get the instructor name, comment, and rating value from the POST data
-            $instructorName = $_POST['instructor'];
-            $course = $_POST['course'];
-            $comment = $_POST['comment'];
-            $ratingVal = $_POST['num'];
-            
-            echo $comment;
-
-            // Get the max id value from the Posts table
-            $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
-            $max_id_result = $conn->query($max_id_query);
-
-            if ($max_id_result->num_rows > 0) {
-                $max_id_row = $max_id_result->fetch_assoc();
-                $id = $max_id_row["max_id"] + 1;
-            } else {
-                $id = 1;
-            }
+            $id = $_POST['post_ID'];
+        
 
             // Prepare the SQL statement with placeholders
-            $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("SELECT * FROM Posts WHERE id = ?;");
 
             // Bind the parameters to the placeholders
-            $stmt->bind_param("issis", $id, $instructorName, $course, $ratingVal, $comment);
+            $stmt->bind_param("i", $id);
 
             // Execute the statement
-            if($stmt->execute()) {
-                // echo "success";
-            } else {
-                // echo "failure" . $stmt->error;
-            }
+            $stmt->execute();
 
-
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $instructor = $row["instructor"];
+            $course_name = $row["course"];
+            $content = $row["content"];
+        
             // Close the statement
             $stmt->close();
 
@@ -128,6 +93,30 @@
             $conn->close();
         }
     ?>
+
+    <form id ="myForm" method="post" action="finished_editing.php">
+        <label for="inputBox">Instructor Name: </label><br>
+        <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox" value ="<?php echo $instructor; ?>"><br><br>
+        <label for="courseBox">Course Name: </label><br>
+        <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox" value ="<?php echo $course_name; ?>"><br><br>
+        <label for="commentBox">Comment: </label><br>
+        <textarea id="commentBox" name="comment" placeholder="Comment" class="InputBox2"><?php echo $content; ?></textarea><br><br>
+        <label for="rateBox">Bowtie Rating:</label>
+        <div class="rateBox">
+                <label for = "num1">1</label>
+                <input type = "radio" id = "num1" name = "num" value = "1" checked>
+                <label for = "num2">2</label>
+                <input type = "radio" id = "num2" name = "num" value = "2" checked>
+                <label for = "num3">3</label>
+                <input type = "radio" id = "num3" name = "num" value = "3" checked>
+                <label for = "num4">4</label>
+                <input type = "radio" id = "num4" name = "num" value = "4" checked>
+                <label for = "num5">5</label>
+                <input type = "radio" id = "num5" name = "num" value = "5"><br>
+                <input type="hidden" name="PID" value="<?php echo $id; ?>">
+        </div>
+        <button type="submit" value="Submit" class="inputButton">Submit</button>
+    </form>
 
 
 

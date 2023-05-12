@@ -58,9 +58,4 @@ VALUES (11, 'Adrian de Freitas', 'CS 110', 2, 'Computers are not really my thing
 
 
 
-drop table Posts; drop table Users;
-
-
-
-
 

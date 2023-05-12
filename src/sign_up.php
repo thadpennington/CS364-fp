@@ -50,9 +50,9 @@
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
                 <label for = "password">Password:</label><br>
-                <input name = "password" type="text" id="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required title = "Password must contain 7 characters minimum, one capital, one number, and one special character." maxlength="50"><br>
+                <input name = "password" type="password" id="password" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required title = "Password must contain 7 characters minimum, one capital, one number, and one special character." maxlength="50"><br>
                 <label for = "confirmPassword">Confirm Password:</label><br>
-                <input name = "confirmPassword" type="text" id="confirmPassword" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required maxlength="50"><br>
+                <input name = "confirmPassword" type="password" id="confirmPassword" pattern="^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?$%&])[A-Za-z0-9#?$%&]{7,}$" autofocus required maxlength="50"><br>
                 <p>Gender:</p>
                 <label for = "sex1">Male</label>
                 <input type = "radio" id = "sex1" name = "sex" value = "male" checked>
