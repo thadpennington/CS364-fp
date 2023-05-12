@@ -5,6 +5,10 @@ $password = "CompSci364";
 $dbname = "databased";
 session_start();
 
+  if (isset($_SESSION['loggedIn'])){
+    echo $_SESSION['username'];
+}
+echo "Test";
 echo $_SESSION['username'];
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

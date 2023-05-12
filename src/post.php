@@ -26,9 +26,19 @@
         </div>
         <a href="https://www.usafa.edu">USAFA</a>
         <div class="topnav-right">
-            <a href="../src/post.php">Post</a>
-            <a href="../src/log_in.php">Log In</a>
-            <a href="../src/sign_up.php">Sign Up</a>
+        <?php 
+            session_start();
+            if (isset($_SESSION['loggedIn'])){
+                echo "<a href=\"../src/post.php\">Post</a>";
+                echo "<a href=\"../src/my_posts.php\">My Posts</a>";
+                echo "<a href=\"../src/post.php\">Welcome ".$_SESSION['username']."</a>";
+                echo "<a href=\"../src/log_out.php\">Log Out</a>";
+            } else {
+                echo "<a href=\"../src/post.php\">Post</a>";
+                echo "<a href=\"../src/log_in.php\">Log In</a>";
+                echo "<a href=\"../src/sign_up.php\">Sign Up</a>";
+            }
+            ?>
         </div>
     </div>
 
@@ -62,6 +72,8 @@
         $password = "CompSci364";
         $dbname = "databased";
 
+        
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -82,7 +94,14 @@
             $comment = $_POST['comment'];
             $ratingVal = $_POST['num'];
             
-            echo $comment;
+            //echo $comment;
+
+            // Check session to get username if signed in
+            if (isset($_SESSION['loggedIn'])){
+                $user = $_SESSION['username'];
+            }else{
+                $user = null;
+            }
 
             // Get the max id value from the Posts table
             $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
@@ -96,10 +115,10 @@
             }
 
             // Prepare the SQL statement with placeholders
-            $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content, user) VALUES (?, ?, ?, ?, ?, ?)");
 
             // Bind the parameters to the placeholders
-            $stmt->bind_param("issis", $id, $instructorName, $course, $ratingVal, $comment);
+            $stmt->bind_param("ississ", $id, $instructorName, $course, $ratingVal, $comment, $user);
 
             // Execute the statement
             if($stmt->execute()) {

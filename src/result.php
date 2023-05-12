@@ -6,7 +6,7 @@
         <link rel="icon" href="../assets/placeholder.jpg" type="image/png">
         <title>USAFA Feedback Finder</title>
         <script src="../assets/suggestions.js" defer></script>
-        <link href="../assets/index.css" rel="stylesheet" />
+        <link href="../assets/result.css" rel="stylesheet" />
         <style>
             body {
                 background-image: url('../assets/chapel.png');
@@ -26,9 +26,23 @@
         </div>
         <a href="https://www.usafa.edu">USAFA</a>
         <div class="topnav-right">
-            <a href="../src/post.php">Post</a>
+            <?php 
+            session_start();
+            if (isset($_SESSION['loggedIn'])){
+                echo "<a href=\"../src/post.php\">Post</a>";
+                echo "<a href=\"../src/my_posts.php\">My Posts</a>";
+                echo "<a href=\"../src/post.php\">Welcome ".$_SESSION['username']."</a>";
+                echo "<a href=\"../src/log_out.php\">Log Out</a>";
+            } else {
+                echo "<a href=\"../src/post.php\">Post</a>";
+                echo "<a href=\"../src/log_in.php\">Log In</a>";
+                echo "<a href=\"../src/sign_up.php\">Sign Up</a>";
+            }
+            ?>
+        
+            <!-- <a href="../src/post.php">Post</a>
             <a href="../src/log_in.php">Log In</a>
-            <a href="../src/sign_up.php">Sign Up</a>
+            <a href="../src/sign_up.php">Sign Up</a> -->
         </div>
     </div>
 

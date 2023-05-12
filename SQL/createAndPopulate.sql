@@ -4,7 +4,7 @@ CREATE TABLE Users (
     username VARCHAR(15) NOT NULL,
     password_hash VARCHAR(64),
     email VARCHAR(50),
-    salt VARCHAR(16),
+    salt VARCHAR(32),
 
     PRIMARY KEY (username)
 );

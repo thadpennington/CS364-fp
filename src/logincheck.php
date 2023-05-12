@@ -4,7 +4,7 @@
             //var_dump($_POST);
             // Get the instructor name, comment, and rating value from the POST data
             $username = $_POST['username'];
-            $password = $_POST['pswrd'];
+            $password = $_POST['password'];
 
             $servername = "localhost";
             $usernameMySQL = "student";
@@ -53,34 +53,31 @@
 
 
             if ($row['username'] == $username){
-                $hash = $row['hash'];
+                $hash = $row['password_hash'];
                 $salt = $row['salt'];
+                //echo "Username check passed";
                 // Check hash in database with input password
-                $hash_ps = hash('sha256', $password, $salt);
+                $hash_ps = bin2hex(hash('sha256', $password, $salt));
 
                 if ($hash == $hash_ps){
-                    echo "YAY";
+                    //echo "Successful Login";
+                    $_SESSION['username'] = $username;
+                    $_SESSION['loggedIn'] = 1;
+                    header("Location: index.php");
+                    echo "<script>Alert(\"Successful login! Welcome ".$username."!\")</script>";
                 }
                 else {
                     $_SESSION["IV"] = "Invalid Username/Password";
                     header("Location: {$_SERVER['HTTP_REFERER']}");
-                    exit;
+                    //exit;
                 }
             }
             else {
                 $_SESSION["IV"] = "Invalid Username/Password";
                 header("Location: {$_SERVER['HTTP_REFERER']}");
-                exit;
+                //exit;
             }
 
-
-
     }
-
-
-
-
-
-
 
 ?>

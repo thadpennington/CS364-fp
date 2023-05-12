@@ -31,7 +31,7 @@
             }
 
             $stmt = $conn->prepare("SELECT * FROM Users WHERE username = ?");
-            header("Location: index.php");
+            //header("Location: index.php");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -45,18 +45,19 @@
             
             }else{
                 // Prepared statement to add user to the database
-                $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, username, password_hash, email, salt) VALUES (?, ?, ?, ?, ?, ?);");
+                $sql = "INSERT INTO Users (firstName, lastName, username, password_hash, email, salt) VALUES (?, ?, ?, ?, ?, ?)";
+                
+                $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ssssss", $firstName, $lastName, $username, $hash_ps, $email, $salt);
                 $stmt->execute();
-                echo $email.$firstName.$lastName.$username."\n";    
+                //echo $email.$firstName.$lastName.$username."\n";    
                 echo "IT DID A THING";
-                echo $hash_ps;
-                echo $salt;
+                //echo $hash_ps;
+                //echo $salt;
                 //add a new value to the database
-                //header("Location: index.php");
+                header("Location: index.php");
             }
-        }
-        else {
+        }else {
             $_SESSION["error"] = "Passwords must match.";
             header("Location: {$_SERVER['HTTP_REFERER']}");
             exit;

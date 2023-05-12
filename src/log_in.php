@@ -33,7 +33,7 @@
 
     <body>
         <div class = "form">
-            <form method = "post" action = "valid.php">
+            <form method = "post" action = "logincheck.php">
                 <?php session_start(); ?>
                 <?php if (isset($_SESSION["IV"])): ?>
                 <p id="error-message-user" style="display: block; color: red;">Invalid Username/Password</p>
@@ -43,8 +43,8 @@
                 <?php endif; ?>
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" minlength="3" maxlength="15" pattern="[a-zA-Z0-9_]+" required><br>
-                <label for = "pswrd">Password:</label><br>
-                <input name = "pswrd" type="password" id="password" name="password" pattern="^[A-Za-z0-9#?$%&]+$" required><br><br>
+                <label for = "password">Password:</label><br>
+                <input name = "password" type="password" id="password" name="password" pattern="^[A-Za-z0-9#?$%&]+$" required><br><br>
                 <input type = "submit" value = "Submit">
             </form>
         </div>
