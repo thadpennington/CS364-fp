@@ -48,7 +48,7 @@
             //echo "Successful connection";
         }
 
-            $myInputValue = $_POST['searchbox'];
+            //$myInputValue = $_POST['searchbox'];
 
             // do something with $myInputValue
             $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor = ?");
@@ -67,8 +67,8 @@
             while ($row = $result->fetch_assoc()) {
                 $id = $row["id"];
                 echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p>";
-                echo "<form id = \"form_edit\" action=\"edit_post.php\"><button class=\"edit_post\" onclick=\"submitForm()\">EDIT</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
-                echo "<form id = \"form_delete\" action=\"delete_post.php\"><button class=\"delete_post\" onclick=\"submitForm()\">DELETE</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                echo "<form id = \"form_edit\" method=\"post\" action=\"edit_post.php\"><button class=\"edit_post\" onclick=\"submitForm()\">EDIT</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                echo "<form id = \"form_delete\" method=\"post\" action=\"delete_post.php\"><button class=\"delete_post\" onclick=\"submitForm()\">DELETE</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
                 echo "</div>";
             }
             echo "</div>";
