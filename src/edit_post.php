@@ -34,6 +34,8 @@
 
     <h2 class = "headerText">Post Submission: </h2>
 
+    
+
     <form id ="myForm" method="post" action="post.php">
         <label for="inputBox">Instructor Name: </label><br>
         <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>

@@ -33,64 +33,50 @@
     </div>
 
     <?php
-        // $servername = "localhost";
-        // $username = "student";
-        // $password = "CompSci364";
-        // $dbname = "databased";
+        $servername = "localhost";
+        $username = "student";
+        $password = "CompSci364";
+        $dbname = "databased";
 
-        // // Create connection
-        // $conn = new mysqli($servername, $username, $password, $dbname);
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // // Check connection
-        // if ($conn->connect_error) {
-        //     die("Connection failed: " . $conn->connect_error);
-        // }else{
-        //     //echo "Successful connection";
-        // }
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }else{
+            //echo "Successful connection";
+        }
 
+            //$myInputValue = $_POST['searchbox'];
 
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //     $myInputValue = $_POST['searchbox'];
+            // do something with $myInputValue
+            $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor = ?");
 
-        //     // do something with $myInputValue
-        //     $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor LIKE ?");
+            //$instructor = "%$myInputValue%";
+            //$stmt->bind_param("s", $instructor);
 
-        //     $instructor = "%$myInputValue%";
-        //     $stmt->bind_param("s", $instructor);
-        //     $stmt->execute();
+            //THESE ARE TEMPORARY
+            $temp = "Joel Coffman";
+            $stmt->bind_param("s", $temp);
+            
+            $stmt->execute();
 
-        //     echo "<div class = \"spacing\">";
-        //     $result = $stmt->get_result();
-        //     while ($row = $result->fetch_assoc()) {
-        //         echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
-        //     }
-        //     echo "</div>";
-        //     $stmt->close();
-        //     $result->free();
+            echo "<div class = \"spacing\">";
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $id = $row["id"];
+                echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p>";
+                echo "<form id = \"form_edit\" method=\"post\" action=\"edit_post.php\"><button class=\"edit_post\" onclick=\"submitForm()\">EDIT</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                echo "<form id = \"form_delete\" method=\"post\" action=\"delete_post.php\"><button class=\"delete_post\" onclick=\"submitForm()\">DELETE</button><input type=\"hidden\" name=\"post_ID\" value=\"".$id."\"></form>";
+                echo "</div>";
+            }
+            echo "</div>";
+            $stmt->close();
+            $result->free();
 
-        //     $conn->close();
-        // }
+            $conn->close();
     ?>
 
-    <div class = "spacing">
-        <div class="postBox">
-            <h4>Anonymous<br>Joel Coffman</h4>
-            <br><p>insert review here</p>
-            <button class="edit_post">EDIT</button>
-            <button class="delete_post">DELETE</button>
-        </div>
-        <div class="postBox">
-            <h4>Anonymous<br>Joel Coffman</h4>
-            <br><p>insert review here 2</p>
-            <button class="edit_post">EDIT</button>
-            <button class="delete_post">DELETE</button>
-        </div>
-        <div class="postBox">
-            <h4>Anonymous<br>Joel Coffman</h4>
-            <br><p>insert review here 3</p>
-            <button class="edit_post">EDIT</button>
-            <button class="delete_post">DELETE</button>
-        </div>
-    </div>
 
 </html> 
