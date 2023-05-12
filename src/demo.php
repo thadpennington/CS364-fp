@@ -55,7 +55,7 @@
                 //echo $hash_ps;
                 //echo $salt;
                 //add a new value to the database
-                header("Location: index.php");
+                header("Location: log_in.php");
             }
         }else {
             $_SESSION["error"] = "Passwords must match.";

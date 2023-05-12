@@ -31,7 +31,7 @@
             if (isset($_SESSION['loggedIn'])){
                 echo "<a href=\"../src/post.php\">Post</a>";
                 echo "<a href=\"../src/my_posts.php\">My Posts</a>";
-                echo "<a href=\"../src/post.php\">Welcome ".$_SESSION['username']."</a>";
+                echo "<a href=\"../src/account_info.php\">Welcome ".$_SESSION['username']."</a>";
                 echo "<a href=\"../src/log_out.php\">Log Out</a>";
             } else {
                 echo "<a href=\"../src/post.php\">Post</a>";
