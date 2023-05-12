@@ -42,10 +42,39 @@
         </div>
     </div>
 
-    <h2 class = "headerText">Post Submission: </h2>
+    <h2 class = "headerText">Account Information: </h2>
 
+
+    <?php 
+    if (isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+    }else{
+        // redirect to login page
+    }
+    $stmt = $conn->prepare("SELECT * FROM Posts WHERE username = ?");
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+
+    echo "<div class = \"spacing\">";
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
+    echo "</div>";
+
+    $stmt->close();
+    $result->free();
+
+    $conn->close();
+    
+    
+    
+    
+    
+    
+    
+    ?>
     <form id ="myForm" method="post" action="post.php">
-        <label for="inputBox">Instructor Name: </label><br>
+        <label for="inputBox">First name: </label><br>
         <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
         <label for="courseBox">Course Name: </label><br>
         <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox"><br><br>

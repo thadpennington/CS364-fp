@@ -61,7 +61,7 @@
             //$myInputValue = $_POST['searchbox'];
 
             // do something with $myInputValue
-            $stmt = $conn->prepare("SELECT * FROM Posts WHERE instructor = ?");
+            $stmt = $conn->prepare("SELECT * FROM Posts WHERE user = ?");
 
             //$instructor = "%$myInputValue%";
             //$stmt->bind_param("s", $instructor);
