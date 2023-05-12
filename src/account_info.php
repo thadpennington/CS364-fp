@@ -49,33 +49,56 @@
     if (isset($_SESSION['username'])){
         $user = $_SESSION['username'];
     }else{
-        // redirect to login page
+        header("Location: log_in.php");
     }
-    $stmt = $conn->prepare("SELECT * FROM Posts WHERE username = ?");
+    
+    $servername = "localhost";
+    $username = "student";
+    $password = "CompSci364";
+    $dbname = "databased";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }else{
+        //echo "Successful connection";
+    }
+    
+    
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE username = ?");
     $stmt->bind_param("s", $user);
     $stmt->execute();
 
-    echo "<div class = \"spacing\">";
+    //echo "<div class = \"spacing\">";
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    echo "<div class=\"postBox\"><h4>Anonymous<br>".$row["instructor"]."</h4><br><p>".$row["content"]."</p></div>";
-    echo "</div>";
+
+    echo "<form id =\"myForm\" method=\"post\" action=\"update_password.php\">";
+    echo "<p class = userInfo>Username: ".$row["username"]."</p><br>";
+    echo "<p class = userInfo>First name: ".$row["firstName"]."</p><br>";
+    echo "<p class = userInfo>Last name: ".$row["lastName"]."</p><br>";
+    echo "<p class = userInfo>Email: ".$row["email"]."</p><br>";
+    
+    echo "<label for=\"oldPassword\">Old Password: </label><br>";
+    echo "<input type=\"password\" id=\"oldPassword\" name=\"oldPassword\" placeholder=\"Old Password\" class=\"InputBox\"><br><br>";
+    echo "<label for=\"newPassword\">New Password: </label><br>";
+    echo "<input type=\"password\" id=\"newPassword\" name=\"newPassword\" placeholder=\"New Password\" class=\"InputBox\"><br><br>";
+    echo "<label for=\"repPassword\">Repeat Password: </label><br>";
+    echo "<input type=\"password\" id=\"repPassword\" name=\"repPassword\" placeholder=\"Repeat Password\" class=\"InputBox\"><br><br>";
+    echo "<button type=\"submit\" value=\"Submit\" class=\"inputButton\">Submit</button>";
+    echo "</form>";
 
     $stmt->close();
     $result->free();
 
-    $conn->close();
-    
-    
-    
-    
-    
-    
-    
+    $conn->close();    
     ?>
-    <form id ="myForm" method="post" action="post.php">
-        <label for="inputBox">First name: </label><br>
-        <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
+    
+        
+        <!-- <input type="text" id="inputBox" name="instructor" placeholder="Instructor Name" class="InputBox"><br><br>
         <label for="courseBox">Course Name: </label><br>
         <input type="text" id="courseBox" name="course" placeholder="Course Name" class="InputBox"><br><br>
         <label for="commentBox">Comment: </label><br>
@@ -93,78 +116,78 @@
                 <input type = "radio" id = "num5" name = "num" value = "5"><br>
         </div>
         <button type="submit" value="Submit" class="inputButton">Submit</button>
-    </form>
+    </form> -->
 
-    <?php
-        $servername = "localhost";
-        $username = "student";
-        $password = "CompSci364";
-        $dbname = "databased";
+    <!-- <?php
+        // $servername = "localhost";
+        // $username = "student";
+        // $password = "CompSci364";
+        // $dbname = "databased";
 
         
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        // // Create connection
+        // $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }else{
-            //echo "Successful connection";
-        }
+        // // Check connection
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error);
+        // }else{
+        //     //echo "Successful connection";
+        // }
 
 
-        // Check if the request method is POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // var_dump($_POST);
-            // Get the instructor name, comment, and rating value from the POST data
-            $instructorName = $_POST['instructor'];
-            $course = $_POST['course'];
-            $comment = $_POST['comment'];
-            $ratingVal = $_POST['num'];
+        // // Check if the request method is POST
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     // var_dump($_POST);
+        //     // Get the instructor name, comment, and rating value from the POST data
+        //     $instructorName = $_POST['instructor'];
+        //     $course = $_POST['course'];
+        //     $comment = $_POST['comment'];
+        //     $ratingVal = $_POST['num'];
             
-            //echo $comment;
+        //     //echo $comment;
 
-            // Check session to get username if signed in
-            if (isset($_SESSION['loggedIn'])){
-                $user = $_SESSION['username'];
-            }else{
-                $user = null;
-            }
+        //     // Check session to get username if signed in
+        //     if (isset($_SESSION['loggedIn'])){
+        //         $user = $_SESSION['username'];
+        //     }else{
+        //         $user = null;
+        //     }
 
-            // Get the max id value from the Posts table
-            $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
-            $max_id_result = $conn->query($max_id_query);
+        //     // Get the max id value from the Posts table
+        //     $max_id_query = "SELECT MAX(id) AS max_id FROM Posts";
+        //     $max_id_result = $conn->query($max_id_query);
 
-            if ($max_id_result->num_rows > 0) {
-                $max_id_row = $max_id_result->fetch_assoc();
-                $id = $max_id_row["max_id"] + 1;
-            } else {
-                $id = 1;
-            }
+        //     if ($max_id_result->num_rows > 0) {
+        //         $max_id_row = $max_id_result->fetch_assoc();
+        //         $id = $max_id_row["max_id"] + 1;
+        //     } else {
+        //         $id = 1;
+        //     }
 
-            // Prepare the SQL statement with placeholders
-            $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content, user) VALUES (?, ?, ?, ?, ?, ?)");
+        //     // Prepare the SQL statement with placeholders
+        //     $stmt = $conn->prepare("INSERT INTO Posts (id, instructor, course, rating, content, user) VALUES (?, ?, ?, ?, ?, ?)");
 
-            // Bind the parameters to the placeholders
-            $stmt->bind_param("ississ", $id, $instructorName, $course, $ratingVal, $comment, $user);
+        //     // Bind the parameters to the placeholders
+        //     $stmt->bind_param("ississ", $id, $instructorName, $course, $ratingVal, $comment, $user);
 
-            // Execute the statement
-            if($stmt->execute()) {
-                // echo "success";
+        //     // Execute the statement
+        //     if($stmt->execute()) {
+        //         // echo "success";
 
-            } else {
-                // echo "failure" . $stmt->error;
-            }
+        //     } else {
+        //         // echo "failure" . $stmt->error;
+        //     }
 
 
-            // Close the statement
-            $stmt->close();
-            // Close the database connection
-            $conn->close();
-            header("Location: index.php");
-        }
-    ?>
+        //     // Close the statement
+        //     $stmt->close();
+        //     // Close the database connection
+        //     $conn->close();
+        //     header("Location: index.php");
+        // }
+    ?> -->
 
 
 
