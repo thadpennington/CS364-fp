@@ -54,6 +54,17 @@ VALUES (10, 'Adrian de Freitas', 'CS 220', 4, 'PEXs were great except for PEX5. 
 INSERT INTO Posts (id, instructor, course, rating, content)
 VALUES (11, 'Adrian de Freitas', 'CS 110', 2, 'Computers are not really my thing and the course material did nothing but confuse me. Not good.');
 
+INSERT INTO Users (firstName, lastName, username, password_hash, email, salt)
+VALUES ('Thad', 'Pennington', 'thadpen', 'e36f2a78b727f3765a61d05b523d86cbc10f64c5423f1535ea9a0ac96702d3bf', 'thad@airforce.com', '6a93295759b00358ff7a3eb911140788');
+
+INSERT INTO Users (firstName, lastName, username, password_hash, email, salt)
+VALUES ('Nicholas', 'Race', 'nickrace', '50c2e3eb938daa5e4f8d5faa523347238f6e1dea500b454351048674991c2e96', 'nick@airforce.com', 'acba28262ab4950de8d349d0b4dc002f');
+
+INSERT INTO Users (firstName, lastName, username, password_hash, email, salt)
+VALUES ('Joe', 'Cates-Beier', 'jcb', 'f9bd5e21a23829d51dea08f0e63b88bece0508e9f180aa62214c195a19f4a21d', 'joe@airforce.com', 'b6027552f76e05af8773e1da1fd96a86');
+
+
+
 
 
 
